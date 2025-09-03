@@ -64,4 +64,68 @@ The request body must be in JSON format and include the following fields:
   ]
 }
 
-This documentation provides a clear overview of how to use the /users/register endpoint, including the required data and possible responses.
+---
+
+# User Profile Endpoint
+
+## Endpoint
+`GET /users/profile`
+
+## Description
+This endpoint returns the authenticated user's profile information. The request must include a valid authentication token (JWT) in the cookie or Authorization header.
+
+## Request Headers
+- `Authorization: Bearer <JWT_TOKEN>` (if not using cookies)
+
+## Responses
+
+### Success
+- **Status Code**: 200 OK
+- **Response Body**:
+{
+  "user": {
+    "fullname": {
+      "firstname": "John",
+      "lastname": "Doe"
+    },
+    "email": "john.doe@example.com"
+  }
+}
+
+### Error
+- **Status Code**: 401 Unauthorized
+- **Response Body**:
+{
+  "message": "Authentication required"
+}
+
+---
+
+# User Logout Endpoint
+
+## Endpoint
+`GET /users/logout`
+
+## Description
+This endpoint logs out the authenticated user by clearing the authentication token from cookies and blacklisting the token. The request must include a valid authentication token (JWT) in the cookie or Authorization header.
+
+## Request Headers
+- `Authorization: Bearer <JWT_TOKEN>` (if not using cookies)
+
+## Responses
+
+### Success
+- **Status Code**: 200 OK
+- **Response Body**:
+{
+  "message": "Logged out successfully"
+}
+
+### Error
+- **Status Code**: 401 Unauthorized
+- **Response Body**:
+{
+  "message": "Authentication required"
+}
+
+This documentation provides a clear overview of how to use the /users/register, /users/profile, and /users/logout endpoints, including the required data and possible responses.
